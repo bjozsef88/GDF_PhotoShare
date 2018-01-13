@@ -185,15 +185,6 @@ IF fulltextserviceproperty(N'IsFulltextInstalled') = 1
 
 
 GO
-PRINT N'Creating [PhotoShare_Login]...';
-
-
-GO
-CREATE LOGIN [PhotoShare_Login]
-    WITH PASSWORD = N'asFtkjr%32d';
-
-
-GO
 PRINT N'Creating [PhotoShare_User]...';
 
 
@@ -242,8 +233,9 @@ GO
 CREATE TABLE [dbo].[Photo] (
     [Id]          INT             IDENTITY (1, 1) NOT NULL,
     [IpAddress]   CHAR (15)       NOT NULL,
+	[Name]		  NVARCHAR (255)  NOT NULL,
+    [Email]       VARCHAR (255)   NOT NULL,
     [Title]       NVARCHAR (100)  NOT NULL,
-    [Description] NVARCHAR (255)  NULL,
     [FileName]    NVARCHAR (255)  NOT NULL,
     [File]        VARBINARY (MAX) NOT NULL,
     CONSTRAINT [PK__Photo] PRIMARY KEY CLUSTERED ([Id] ASC)

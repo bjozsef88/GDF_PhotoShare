@@ -62,6 +62,6 @@
     <Build Include="Photo.sql" />
     <Build Include="Login.sql" />
     <Build Include="User.sql" />
-    <Build Include="PhotoShare.Database.Deploy.publish.sql" />
+    <Build Include="PhotoFile.sql" />
   </ItemGroup>
 </Project>

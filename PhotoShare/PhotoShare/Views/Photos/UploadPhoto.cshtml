@@ -1,0 +1,36 @@
+﻿@model PhotoShare.Models.Photo
+    @{
+        ViewBag.Title = "Fénykép feltöltése";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <div class="jumbotron">
+        <h1>Kép feltöltése</h1>
+        <p>Tallózd be a kívánt képet, töltsd ki az adataidat majd kattints a Feltöltés gombra.</p>
+    </div>
+    @using (Html.BeginForm("UploadPhoto", "Photos", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(model => model.IpAddress)
+        <div class="form-group required">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Add meg a neved" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Email, new { @type = "email", @class = "form-control", @placeholder = "nev@pelda.hu" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "Fényképed címe" })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label class="btn btn-default">
+                Kép tallózása <input type="file" name="photo" hidden>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Feltöltés</button>
+        @Html.ActionLink("Vissza", "Index", "Photo", new { @class = "btn btn-default" })
+    }

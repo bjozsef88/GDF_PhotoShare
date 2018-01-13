@@ -5,8 +5,10 @@
 		CONSTRAINT PK__Photo
 		PRIMARY KEY CLUSTERED,
 	[IpAddress] char(15) NOT NULL,
+	[UploadedAt] datetime2 NOT NULL
+		CONSTRAINT DF__Photo__UploadedAt
+		DEFAULT GETDATE(),
+	[Name] nvarchar(255) NOT NULL,
+	[Email] varchar(255) NOT NULL,
 	[Title] nvarchar(100) NOT NULL,
-	[Description] nvarchar(255) NULL,
-	[FileName] nvarchar(255) NOT NULL,
-	[File] varbinary(max) NOT NULL
 )

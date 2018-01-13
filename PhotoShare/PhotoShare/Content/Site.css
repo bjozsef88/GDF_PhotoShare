@@ -22,3 +22,26 @@ select,
 textarea {
     max-width: 280px;
 }
+
+[hidden] {
+    display: none !important;
+}
+
+.form-group.required .control-label:after {
+    content: "*";
+    color: red;
+}
+
+.image {
+    border: 1px solid #454545;
+    height: 230px;
+}
+
+    .image img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .image .image-title {
+        text-align: center;
+    }
