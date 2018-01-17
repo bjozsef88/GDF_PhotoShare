@@ -30,7 +30,7 @@ namespace PhotoShare.Models
             };
         }
 
-        private ThumnailDimensions GetThumnailDimensions()
+        private ThumbnailDimensions GetThumnailDimensions()
         {
             int imageWidht = _photoImage.Width;
             int imageHeight = _photoImage.Height;
@@ -47,7 +47,7 @@ namespace PhotoShare.Models
                 thumbnailWidht = (THUMBNAILSIZE * imageWidht) / imageHeight;
             }
 
-            return new ThumnailDimensions
+            return new ThumbnailDimensions
             {
                 Width = thumbnailWidht,
                 Height = thumbnailHeight
@@ -56,7 +56,7 @@ namespace PhotoShare.Models
 
         private Image GetThumbnail()
         {
-            ThumnailDimensions dimensions = GetThumnailDimensions();
+            ThumbnailDimensions dimensions = GetThumnailDimensions();
 
             return _photoImage.GetThumbnailImage(dimensions.Width, dimensions.Height, () => false, IntPtr.Zero);
         }
@@ -71,7 +71,7 @@ namespace PhotoShare.Models
         }
     }
 
-    internal class ThumnailDimensions
+    internal class ThumbnailDimensions
     {
         public int Width { get; set; }
         public int Height { get; set; }

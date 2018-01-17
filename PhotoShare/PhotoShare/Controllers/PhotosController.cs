@@ -9,11 +9,16 @@ namespace PhotoShare.Controllers
 {
     public class PhotosController : Controller
     {
-        private PhotoShareEntities _db = new PhotoShareEntities();
+        private PhotoRepository _repository;
+
+        public PhotosController()
+        {
+            _repository = new PhotoRepository();
+        }
 
         public ActionResult Index()
         {
-            return View(_db.Photos.ToList());
+            return View(_repository.List());
         }
 
         public ViewResult UploadPhoto()
@@ -40,8 +45,7 @@ namespace PhotoShare.Controllers
                     {
                         model.PhotoFile = imageManipulation.MakePhotoFileFromStream(file.InputStream, file.FileName);
 
-                        _db.Photos.Add(model);
-                        _db.SaveChanges();
+                        _repository.Add(model);
                     }
                 }
                 return RedirectToAction("Index");
@@ -53,24 +57,21 @@ namespace PhotoShare.Controllers
 
         public ActionResult GetPhoto(int id)
         {
-            byte[] imageData = null;
-            imageData = _db.Photos.Find(id).PhotoFile.File;
+            byte[] imageData = _repository.GetPhoto(id, PhotoType.Full);
 
             return File(imageData, "image/jpg");
         }
 
         public ActionResult GetThumbnail(int id)
         {
-            byte[] imageData = null;
-            imageData = _db.Photos.Find(id).PhotoFile.Thumbnail;
+            byte[] imageData = _repository.GetPhoto(id, PhotoType.Thumbnail);
 
             return File(imageData, "image/jpg");
         }
 
         protected override void Dispose(bool disposing)
         {
-            _db.Dispose();
-
+            _repository.Dispose();
             base.Dispose(disposing);
         }
     }

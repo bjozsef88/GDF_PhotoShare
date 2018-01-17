@@ -11,7 +11,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IpAddress" Type="char" MaxLength="15" Nullable="false" />
-          <Property Name="UploadedAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UploadedAt" Type="datetime2" Precision="7" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -58,7 +58,7 @@
           <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="UploadedAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UploadedAt" Type="DateTime" Nullable="false" Precision="7" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="PhotoFile" Relationship="PhotoShareModel.FK__PhotoFile__Photo" FromRole="Photo" ToRole="PhotoFile" />
         </EntityType>
         <EntityContainer Name="PhotoShareEntities" annotation:LazyLoadingEnabled="true">
