@@ -9,8 +9,8 @@
     <h1>Képek</h1>
     <p>Ezen az oldalon válogathatsz kedvedre a feltöltött képek közül...</p>
 </div>
-@{ 
-    int i = 0; 
+@{
+    int i = 0;
 }
 
 @foreach (PhotoShare.Models.Photo photo in Model)
@@ -23,10 +23,14 @@
 
     <div class="col-md-4">
         <div class="thumbnail">
-            <a data-fancybox href="/Photos/GetPhoto/@photo.Id" data-type="image" data-width="800" data-height="600">
+            <a data-fancybox href="/Photos/GetPhoto/@photo.Id" data-type="image" data-caption="@photo.Title">
                 <img src="/Photos/GetThumbnail/@photo.Id" alt="Lights" style="width:100%">
                 <div class="caption">
-                    <p>@photo.Title</p>
+                    <p>
+                        <strong>@photo.Title</strong><br />
+                        Feltöltötte: @photo.Name (@photo.Email)<br />
+                        <i>@photo.UploadedAt</i>
+                    </p>
                 </div>
             </a>
         </div>
